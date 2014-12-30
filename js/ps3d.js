@@ -10,7 +10,8 @@ var m_main   = require("main");
 var m_scenes = require("scenes");
 var m_camera = require("camera");
 //var m_camera_anim = require("camera_anim");
-var m_material = require("material");
+//var m_material = require("material");
+var m_transform = require("transform");
 var m_sfx    = require("sfx");
 var _previous_selected_obj = null;
 
@@ -73,13 +74,13 @@ function main_canvas_click(e) {
     var obj = m_scenes.pick_object(x, y);
 	
 	//var camobj = m_scenes.get_active_camera();
-	var TotalWork = m_scenes.get_object_by_name("TotalWork");
-	m_material.set_emit_factor(TotalWork, "krav", .2);
-	m_material.set_emit_factor(TotalWork, "venezia", .2);
-	m_material.set_emit_factor(TotalWork, "path", .2);
-	m_material.set_emit_factor(TotalWork, "paoletti", .2);
-	m_material.set_emit_factor(TotalWork, "phillys", .2);
-	m_material.set_emit_factor(TotalWork, "awip", .5);
+	//var TotalWork = m_scenes.get_object_by_name("TotalWork");
+	//m_material.set_emit_factor(TotalWork, "krav", .2);
+	//m_material.set_emit_factor(TotalWork, "venezia", .2);
+	//m_material.set_emit_factor(TotalWork, "path", .2);
+	//m_material.set_emit_factor(TotalWork, "paoletti", .2);
+	//m_material.set_emit_factor(TotalWork, "phillys", .2);
+	//m_material.set_emit_factor(TotalWork, "awip", .5);
 	
     if (obj) {
         if (_previous_selected_obj) {
@@ -94,26 +95,43 @@ function main_canvas_click(e) {
 			setTimeout(function() { window.open('http://www.veneziamarble.com/', '_blank') }, 2000)
 		}
 		else if (obj.name=="awip"){
+		   // m_anim.apply_def(obj);
+			//m_anim.apply(obj, "Plasmascape.001Action");
+		//	m_anim.play(obj);
+			//var TotalWork = m_scenes.get_object_by_name("Rotation");
+			//m_anim.apply_def(TotalWork);
+			//m_anim.play(TotalWork);
+			//m_transform.set_scale(obj, 100);
+			//m_transform.set_translation(obj,10,20,30);
+			//m_transform.set_translation_rel(obj,10,20,30,TotalWork);
+		//	m_transform.move_local(obj,10,20,30);
+			setTimeout(function() { window.open('http://www.awippersonaltraining.com/', '_blank') }, 20)
+		}
+		else if (obj.name=="phillys"){
 		    m_anim.apply_def(obj);
 			m_anim.play(obj);
-			setTimeout(function() { window.open('http://www.awippersonaltraining.com/', '_blank') }, 2000)
+			setTimeout(function() { window.open('http://phillys.herokuapp.com/', '_blank') }, 20)
+		}
+		else if (obj.name=="paoletti plane"){
+		    m_anim.apply_def(obj);
+			m_anim.play(obj);
+			setTimeout(function() { window.open('http://plaw.herokuapp.com/', '_blank') }, 20)
+		}
+		else if (obj.name=="venezia.001"){
+		    m_anim.apply_def(obj);
+			m_anim.play(obj);
+			setTimeout(function() { window.open('http://phillys.herokuapp.com/', '_blank') }, 20)
 		}
 		else if (obj.name=="path"){
 		    m_anim.apply_def(obj);
 			m_anim.play(obj);
-			setTimeout(function() { window.open('http://www.greenwayproperty.com/', '_blank') }, 2000)
+			setTimeout(function() { window.open('http://plaw.herokuapp.com/', '_blank') }, 20)
 		}
-		else if (obj.name=="philly"){
+		else if (obj.name=="krav plane"){
 		    m_anim.apply_def(obj);
 			m_anim.play(obj);
-			setTimeout(function() { window.open('http://phillys.herokuapp.com/', '_blank') }, 2000)
-		}
-		else if (obj.name=="paoletti"){
-		    m_anim.apply_def(obj);
-			m_anim.play(obj);
-			setTimeout(function() { window.open('http://plaw.herokuapp.com/', '_blank') }, 2000)
+			setTimeout(function() { window.open('http://ctkrav.herokuapp.com/', '_blank') }, 20)
 		};
-		    
 			
 			m_anim.apply_def(obj);
 			m_anim.play(obj);
