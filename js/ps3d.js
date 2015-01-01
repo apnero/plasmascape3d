@@ -227,9 +227,9 @@ function load_data() {
             }, false);
 
             if (format2 == "m4v")
-                video_file2.src="arial.mp4";
+                video_file2.src="Arial.mp4";
             else
-                video_file2.src="arial.mp4";
+                video_file2.src="Arial.mp4";
         } else
             console.log("Can not load the video.");
     }
