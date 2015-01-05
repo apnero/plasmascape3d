@@ -215,5 +215,4 @@ pip-log.txt
 .mr.developer.cfg
 
 node_modules/
-shaders/
 src/
