@@ -17,7 +17,7 @@ var m_version = require("version");
 var m_sfx    = require("sfx");
 var _previous_selected_obj = null;
 var DEBUG = (m_version.type() === "DEBUG");
-var VIDEO_DELAY_TIME = 900/30;
+var VIDEO_DELAY_TIME = 600/30;
 var PRELOADING = true;
 var state = 0;
 var HIDE_MENU_DELAY          = 2000;
@@ -37,7 +37,7 @@ exports.init = function() {
 		gl_debug: true,
         physics_enabled: false,
         alpha: true,
-		console_verbose: DEBUG
+		console_verbose: false
     });
 
 }
@@ -48,15 +48,11 @@ function init_cb(canvas_elem, success) {
         console.log("b4w init failure");
         return;
     }
-	//canvas_elem.addEventListener("mousedown", main_canvas_click, false);
+
     m_app.enable_controls(canvas_elem);
 	//m_preloader.create_simple_preloader(canvas_elem);
     
      m_preloader.create_rotation_preloader({
-        //img_width: 165,
-        //preloader_width: 460,
-        //preloader_bar_id: "preloader_bar",
-        //fill_band_id: "fill_band",
         preloader_caption_id: "preloader_caption",
         preloader_container_id: "preloader_container",
         background_container_id: "background_image_container",
@@ -64,12 +60,10 @@ function init_cb(canvas_elem, success) {
     });
 	var can = canvas_elem.offsetParent;
 		can.addEventListener("mousedown", main_canvas_click, false);
-    //var preloader_frame = document.getElementById("preloader_frame");
 
-    //preloader_frame.style.visibility = "visible"; 
 window.onresize = on_resize;
     on_resize();
-    load();    //canvas_elem.addEventListener("mousedown", main_canvas_click, false);
+    load();    
 }
 
 function load() {
@@ -85,9 +79,6 @@ function load_cb(data_id) {
 	load_data();
 }
 
-//function preloader_callback(percentage) {
-//    m_preloader.update_preloader(percentage);
-//}
 
 function on_resize() {
     var w = window.innerWidth;
@@ -104,98 +95,125 @@ function main_canvas_click(e) {
 
     var obj = m_scenes.pick_object(x, y);
 	
-	//var camobj = m_scenes.get_active_camera();
+	
+	var Emitter = m_scenes.get_object_by_name('Emitter');
 	var Rotation = m_scenes.get_object_by_name('Rotation');
-	//m_material.set_emit_factor(TotalWork, "krav", .2);
-	
-	
+	var Stone = m_scenes.get_object_by_name('StoneGrinder');
+	var Explosion = m_scenes.get_object_by_name('Explosion');
+
+
     if (obj) {
-        if (_previous_selected_obj) {
-            m_anim.stop(_previous_selected_obj);
-            m_anim.set_frame(_previous_selected_obj, 0);
-        }
-        _previous_selected_obj = obj;
+        //if (_previous_selected_obj) {
+       //     m_anim.stop(_previous_selected_obj);
+       //     m_anim.set_frame(_previous_selected_obj, 0);
+        //}
+       // _previous_selected_obj = obj;
 		
 		if(obj.name=="leftarrow"){
-		    if (state == 0){  //at welcome
-				m_anim.apply(Rotation, "WToWork");
+				
+			if (state == 0){  //at welcome
+				m_sfx.play(Stone, 0, 2);
+				m_anim.apply(Rotation, "WToWorkAction");
 				state = 1;
 				}
 			else if (state == 1){ //at work
-				m_anim.apply(Rotation, "WorkToAnim");
+				m_sfx.play(Stone, 0, 5);
+				m_anim.apply(Rotation, "WorkToAnimAction");
 				state = 2;
 				}
 			else if (state == 2){ //at animation
-				m_anim.apply(Rotation, "AnimToMe");
+				m_sfx.play(Stone, 0, 5);
+				m_anim.apply(Rotation, "AnimToMeAction");
 				state = 3;
 			}
 			else if (state == 3){ //at me
-				m_anim.apply(Rotation, "MeToW");
+				m_sfx.play(Stone, 0, 2);
+				m_anim.apply(Rotation, "MeToWAction");
 				state = 0;
 			}						
-			m_anim.play(Rotation);	
+			
+			m_anim.set_behavior(Rotation, m_anim.AB_FINISH_STOP);
+			m_anim.play(Rotation);			
 		}
 		else if(obj.name=="rightarrow"){
+			
 		    if (state == 0){  //at welcome
-				m_anim.apply(Rotation, "WToMe");
+				m_sfx.play(Stone, 0, 2);
+				m_anim.apply(Rotation, "WToMeAction");
 				state = 3;
-				}
+			}
 			else if (state == 3){ //at me
-				m_anim.apply(Rotation, "MeToAnim");
+				m_sfx.play(Stone, 0, 5);
+				m_anim.apply(Rotation, "MeToAnimAction");
 				state = 2;
 				}
 			else if (state == 2){ //at animation
-				m_anim.apply(Rotation, "AnimToWork");
+				m_sfx.play(Stone, 0, 5);
+				m_anim.apply(Rotation, "AnimToWorkAction");
 				state = 1;
 			}
 			else if (state == 1){ //at work
-				m_anim.apply(Rotation, "WorkToW");
+				m_sfx.play(Stone, 0, 2);
+				m_anim.apply(Rotation, "WorkToWAction");
 				state = 0;
-			}						
-			m_anim.play(Rotation);	
+			}				 		
+
+			m_anim.set_behavior(Rotation, m_anim.AB_FINISH_STOP);
+			m_anim.play(Rotation);		
 		}
-		else if(state != -1) {//at work
+		else if(state == 1) {//at work
 			if (obj.name=="venezia"){
-				m_anim.apply_def(obj);
-				m_anim.play(obj);
-				setTimeout(function() { window.open('http://www.veneziamarble.com/', '_blank') }, 2000)
+				m_anim.apply_def(Emitter);
+				m_anim.play(Emitter);
+				m_sfx.play(Explosion, 0, 2);
+				setTimeout(function() { window.open('http://www.veneziamarble.com/', '_blank') }, 900)
 			}
 			else if (obj.name=="awip"){
-				setTimeout(function() { window.open('http://www.awippersonaltraining.com/', '_blank') }, 20)
+				m_anim.apply_def(Emitter);
+				m_anim.play(Emitter);	
+				m_sfx.play(Explosion, 0, 2);
+				setTimeout(function() { window.open('http://www.awippersonaltraining.com/', '_blank') }, 900)
 			}
 			else if (obj.name=="phillys"){
-				m_anim.apply_def(obj);
-				m_anim.play(obj);
-				setTimeout(function() { window.open('http://phillys.herokuapp.com/', '_blank') }, 20)
+				m_anim.apply_def(Emitter);
+				m_anim.play(Emitter);	
+				m_sfx.play(Explosion, 0, 2);
+				setTimeout(function() { window.open('http://phillys.herokuapp.com/', '_blank') }, 900)
 			}
 			else if (obj.name=="paoletti plane"){
-				m_anim.apply_def(obj);
-				m_anim.play(obj);
-				setTimeout(function() { window.open('http://plaw.herokuapp.com/', '_blank') }, 20)
-			}
-			else if (obj.name=="venezia.001"){
-				m_anim.apply_def(obj);
-				m_anim.play(obj);
-				setTimeout(function() { window.open('http://phillys.herokuapp.com/', '_blank') }, 20)
+				m_anim.apply_def(Emitter);
+				m_anim.play(Emitter);	
+				m_sfx.play(Explosion, 0, 2);
+				setTimeout(function() { window.open('http://plaw.herokuapp.com/', '_blank') }, 900)
 			}
 			else if (obj.name=="path"){
-				m_anim.apply_def(obj);
-				m_anim.play(obj);
-				setTimeout(function() { window.open('http://plaw.herokuapp.com/', '_blank') }, 20)
+				m_anim.apply_def(Emitter);
+				m_anim.play(Emitter);	
+				m_sfx.play(Explosion, 0, 2);
+				setTimeout(function() { window.open('http://www.greenwaypropertycare.com/', '_blank') }, 900)
 			}
 			else if (obj.name=="krav plane"){
-				m_anim.apply_def(obj);
-				m_anim.play(obj);
-				setTimeout(function() { window.open('http://ctkrav.herokuapp.com/', '_blank') }, 20)
+				m_anim.apply_def(Emitter);
+				m_anim.play(Emitter);	
+				m_sfx.play(Explosion, 0, 2);
+				setTimeout(function() { window.open('http://crkrav.herokuapp.com/', '_blank') }, 900)
 			}
 		}
-			
+		else if (state == 2){ //at animation
+			if(obj.name=="plasmagraphix") {
+				m_anim.apply_def(Emitter);
+				m_anim.play(Emitter);	
+				m_sfx.play(Explosion, 0, 2);
+				setTimeout(function() { window.open('http://www.plasmagraphix.com/', '_blank') }, 900)
+			}
+		}
 
     }
 }
 
 function load_data() {
-    var vid = "my_video5";
+
+	var vid = "my_video5";
 	var vid2 = "my_image";
 	//var vid3 = "my_video11";
 	var ctx_video = m_tex.get_canvas_texture_context(vid);
@@ -242,7 +260,7 @@ function load_data() {
         } else
             console.log("Can not load the video.");
     }
-	
+	 
 /* 	if (ctx_video3) {
 
         var format3 = m_sfx.detect_video_container("");
