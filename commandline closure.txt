@@ -16,7 +16,6 @@ js=src/ext/constraints.js --js=src/ext/data.js --js=src/ext/debug.js --js=src/ex
 t/hud.js --js=src/ext/geometry.js --js=src/ext/lights.js --js=src/ext/physics.js
  --js=src/ext/particles.js --js=src/ext/scenes.js --js=src/ext/sfx.js --js=src/e
 xt/shaders.js --js=src/ext/transform.js --js=src/ext/util.js --js=src/ext/versio
-n.js --js=src/ext/textures.js --js=src/ext/main.js --js=src/addons/camera_anim.j
-s --js=src/addons/mixer.js --js=src/addons/storage.js --js=src/addons/app.js --j
+n.js --js=src/ext/textures.js --js=src/ext/main.js --js=src/addons/app.js --j
 s=src/addons/preloader.js --js=src/addons/screenshooter.js --js=src/addons/ns_co
 mpat.js --js_output_file=out.js --language_in=ECMASCRIPT5

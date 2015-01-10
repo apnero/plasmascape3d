@@ -34,7 +34,7 @@ exports.init = function() {
     m_app.init({
         canvas_container_id: "main_canvas_container", 
         callback: init_cb,
-		gl_debug: true,
+		gl_debug: false,
         physics_enabled: false,
         alpha: true,
 		console_verbose: false
@@ -100,7 +100,9 @@ function main_canvas_click(e) {
 	var Rotation = m_scenes.get_object_by_name('Rotation');
 	var Stone = m_scenes.get_object_by_name('StoneGrinder');
 	var Explosion = m_scenes.get_object_by_name('Explosion');
-
+	var LeftButton = m_scenes.get_object_by_name('LeftButton');
+	var RightButton = m_scenes.get_object_by_name('RightButton');
+	m_sfx.mute(Stone, true);
 
     if (obj) {
         //if (_previous_selected_obj) {
@@ -109,8 +111,11 @@ function main_canvas_click(e) {
         //}
        // _previous_selected_obj = obj;
 		
-		if(obj.name=="leftarrow"){
-				
+		if(obj.name=="LeftButton"){
+			m_sfx.mute(Stone, false);
+			//m_anim.set_behavior(LeftButton, m_anim.AB_FINISH_STOP);
+			m_anim.apply_def(LeftButton);
+			m_anim.play(LeftButton);
 			if (state == 0){  //at welcome
 				m_sfx.play(Stone, 0, 2);
 				m_anim.apply(Rotation, "WToWorkAction");
@@ -135,7 +140,11 @@ function main_canvas_click(e) {
 			m_anim.set_behavior(Rotation, m_anim.AB_FINISH_STOP);
 			m_anim.play(Rotation);			
 		}
-		else if(obj.name=="rightarrow"){
+		else if(obj.name=="RightButton"){
+			m_sfx.mute(Stone, false);
+			//m_anim.set_behavior(LeftButton, m_anim.AB_FINISH_RESET);
+			m_anim.apply_def(RightButton);
+			m_anim.play(RightButton);
 			
 		    if (state == 0){  //at welcome
 				m_sfx.play(Stone, 0, 2);
@@ -213,7 +222,7 @@ function main_canvas_click(e) {
 
 function load_data() {
 
-	var vid = "my_video5";
+	var vid = "mainvideo";
 	var vid2 = "my_image";
 	//var vid3 = "my_video11";
 	var ctx_video = m_tex.get_canvas_texture_context(vid);
@@ -234,9 +243,9 @@ function load_data() {
             }, false);
 
             if (format == "m4v")
-                video_file.src="slider.mp4";
+                video_file.src="output.webm";
             else
-                video_file.src="slider.mp4";
+                video_file.src="output.webm";
         } else
             console.log("Can not load the video.");
     }  
