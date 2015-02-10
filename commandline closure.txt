@@ -1,21 +1,3 @@
-java -jar compiler.jar --js=js/b4
-w.min.js --js=src/modules.js --js=src/version.js --js=src/boundings.js --js=src/
-constraints.js --js=src/compat.js --js=src/config.js --js=src/controls.js --js=s
-rc/curve.js --js=src/debug.js --js=src/extensions.js --js=src/graph.js --js=src/
-scenegraph.js --js=src/objects.js --js=src/ipc.js --js=src/hud.js --js=src/prere
-nder.js --js=src/print.js --js=src/reformer.js --js=src/renderer.js --js=src/sha
-ders.js --js=src/assets.js --js=src/geometry.js --js=src/primitives.js --js=src/
-particles.js --js=src/textures.js --js=src/dds.js --js=src/loader.js --js=src/ca
-mera.js --js=src/lights.js --js=src/scenes.js --js=src/physics.js --js=src/data.
-js --js=src/batch.js --js=src/nodemat.js --js=src/animation.js --js=src/transfor
-m.js --js=src/tsr.js --js=src/util.js --js=src/nla.js --js=src/sfx.js --js=src/l
-ibs/gl-matrix2.js --js=src/libs/gpp_eval.js --js=src/libs/gpp_parser.js --js=src
-/libs/md5.js --js=src/ext/animation.js --js=src/ext/assets.js --js=src/ext/mater
-ial.js --js=src/ext/camera.js --js=src/ext/config.js --js=src/ext/controls.js --
-js=src/ext/constraints.js --js=src/ext/data.js --js=src/ext/debug.js --js=src/ex
-t/hud.js --js=src/ext/geometry.js --js=src/ext/lights.js --js=src/ext/physics.js
- --js=src/ext/particles.js --js=src/ext/scenes.js --js=src/ext/sfx.js --js=src/e
-xt/shaders.js --js=src/ext/transform.js --js=src/ext/util.js --js=src/ext/versio
-n.js --js=src/ext/textures.js --js=src/ext/main.js --js=src/addons/app.js --j
-s=src/addons/preloader.js --js=src/addons/screenshooter.js --js=src/addons/ns_co
-mpat.js --js_output_file=out.js --language_in=ECMASCRIPT5
+java -jar compiler.jar --js=src/modules.js --js=src/version.js --js=src/boundings.js  --js=src/constraints.js --js=src/compat.js --js=src/config.js --js=src/controls.js --js=src/curve.js --js=src/debug.js --js=src/extensions.js --js=src/graph.js --js=src/scenegraph.js --js=src/objects.js --js=src/ipc.js --js=src/hud.js --js=src/prerender.js --js=src/print.js --js=src/reformer.js --js=src/renderer.js --js=src/shaders.js --js=src/assets.js --js=src/geometry.js --js=src/primitives.js --js=src/particles.js --js=src/textures.js --js=src/dds.js --js=src/loader.js --js=src/camera.js --js=src/lights.js --js=src/scenes.js --js=src/physics.js --js=src/data.js --js=src/batch.js --js=src/nodemat.js --js=src/animation.js --js=src/time.js --js=src/transform.js --js=src/tsr.js --js=src/util.js --js=src/nla.js --js=src/sfx.js --js=src/libs/gl-matrix2.js --js=src/libs/gpp_eval.js --js=src/libs/gpp_parser.js --js=src/libs/md5.js --js=src/ext/animation.js --js=src/ext/assets.js --js=src/ext/material.js --js=src/ext/camera.js --js=src/ext/config.js --js=src/ext/controls.js --js=src/ext/constraints.js --js=src/ext/data.js --js=src/ext/debug.js --js=src/ext/geometry.js --js=src/ext/hud.js --js=src/ext/lights.js --js=src/ext/physics.js --js=src/ext/scenes.js --js=src/ext/sfx.js --js=src/ext/shaders.js --js=src/ext/transform.js --js=src/ext/util.js --js=src/ext/version.js --js=src/ext/particles.js --js=src/ext/textures.js --js=src/ext/objects.js --js=src/ext/main.js --js=src/addons/storage.js --js=src/addons/app.js --js=src/addons/mouse.js --js=src/addons/preloader.js --js=src/addons/ns_compat.js --js_output_file=js/out.js --language_in=ECMASCRIPT5
+
+
