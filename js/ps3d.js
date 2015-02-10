@@ -193,7 +193,7 @@ function main_canvas_click(e) {
 				m_anim.apply_def(Emitter);
 				m_anim.play(Emitter);	
 				m_sfx.play(Explosion, 0, 2);
-				setTimeout(function() { window.open('http://plaw.herokuapp.com/', '_blank') }, 900)
+				setTimeout(function() { window.open('http://www.paolettilaw.com/', '_blank') }, 900)
 			}
 			else if (obj.name=="path"){
 				m_anim.apply_def(Emitter);
@@ -205,7 +205,7 @@ function main_canvas_click(e) {
 				m_anim.apply_def(Emitter);
 				m_anim.play(Emitter);	
 				m_sfx.play(Explosion, 0, 2);
-				setTimeout(function() { window.open('http://crkrav.herokuapp.com/', '_blank') }, 900)
+				setTimeout(function() { window.open('http://www.kravmagact.com/', '_blank') }, 900)
 			}
 		}
 		else if (state == 2){ //at animation
@@ -243,9 +243,9 @@ function load_data() {
             }, false);
 
             if (format == "m4v")
-                video_file.src="output.webm";
+                video_file.src="mainvideo.mp4";
             else
-                video_file.src="output.webm";
+                video_file.src="mainvideo.mp4";
         } else
             console.log("Can not load the video.");
     }  
